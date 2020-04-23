@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">CoroutinesDemo</string>
+
+    <!--    menu strings-->
+    <string name="menu_animations">Animations</string>
+    <string name="menu_single_request">Single Request</string>
+    <string name="menu_multiple_requests">Multiple Requests</string>
+    <string name="menu_flow">Flows</string>
 </resources>
