@@ -9,4 +9,15 @@
 
     <string name="artist_genre">%s (%s)</string>
     <string name="elapsed_time">Elapsed Time: %sms</string>
+    <string name="show_ui">Show UI</string>
+
+    <!--    animations strings-->
+    <string name="menu_home">Home</string>
+    <string name="menu_songs">Músicas</string>
+    <string name="menu_set_list">SetLists</string>
+    <string name="menu_profile">Perfil</string>
+    <string name="animations">Animations</string>
+    <string name="with">with</string>
+    <string name="coroutines">Coroutines</string>
+
 </resources>
