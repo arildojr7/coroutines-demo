@@ -25,8 +25,7 @@ class SingleRequestViewModel(private val songsRepository: SongsRepository) : Vie
     val songs: LiveData<List<Song>> = Transformations.map(_songs) { it }
 
     val isLoading = MutableLiveData<Boolean>()
-
-    var elapsedTime: Long = 0L
+    val elapsedTime = MutableLiveData<Long>()
     var initialTime: Long = 0L
 
     init {
@@ -39,27 +38,35 @@ class SingleRequestViewModel(private val songsRepository: SongsRepository) : Vie
         val artistId3 = "358714030"
         val artistId4 = "1419227"
         val artistId5 = "264111789"
-        val limit = 5
 
         initialTime = System.currentTimeMillis()
 
-        // REQUESTS
-        val response1 = songsRepository.getSongs(artistId1, limit)
-        val response2 = songsRepository.getSongs(artistId2, limit)
-        val response3 = songsRepository.getSongs(artistId3, limit)
-        val response4 = songsRepository.getSongs(artistId4, limit)
-        val response5 = songsRepository.getSongs(artistId5, limit)
+        // REQUESTS 1
+        songsRepository.getSongs(artistId1).let { response ->
+            _songs addData response.body()?.results
+        }
 
-        elapsedTime = System.currentTimeMillis() - initialTime
+        // REQUEST 2
+        songsRepository.getSongs(artistId2).let { response ->
+            _songs addData response.body()?.results
+        }
 
-        
-        //
-        _songs addData response1.body()?.results?.filter { it.wrapperType == WrapperTypeEnum.TRACK.getValue() }
-        _songs addData response2.body()?.results?.filter { it.wrapperType == WrapperTypeEnum.TRACK.getValue() }
-        _songs addData response3.body()?.results?.filter { it.wrapperType == WrapperTypeEnum.TRACK.getValue() }
-        _songs addData response4.body()?.results?.filter { it.wrapperType == WrapperTypeEnum.TRACK.getValue() }
-        _songs addData response5.body()?.results?.filter { it.wrapperType == WrapperTypeEnum.TRACK.getValue() }
+        // REQUEST 3
+        songsRepository.getSongs(artistId3).let { response ->
+            _songs addData response.body()?.results
+        }
 
+        // REQUEST 4
+        songsRepository.getSongs(artistId4).let { response ->
+            _songs addData response.body()?.results
+        }
+
+        // REQUEST 5
+        songsRepository.getSongs(artistId5).let { response ->
+            _songs addData response.body()?.results
+        }
+
+        elapsedTime.postValue(System.currentTimeMillis() - initialTime)
         isLoading.postValue(false)
     }
 

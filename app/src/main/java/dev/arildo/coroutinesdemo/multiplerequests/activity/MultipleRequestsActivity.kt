@@ -1,21 +1,20 @@
-package dev.arildo.coroutinesdemo.singlerequest.activity
+package dev.arildo.coroutinesdemo.multiplerequests.activity
 
 import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.Observer
 import dev.arildo.coroutinesdemo.R
 import dev.arildo.coroutinesdemo.core.adapter.SongAdapter
 import dev.arildo.coroutinesdemo.core.base.BaseActivity
 import dev.arildo.coroutinesdemo.core.util.showElapsedTime
-import dev.arildo.coroutinesdemo.databinding.ActivitySingleRequestBinding
-import dev.arildo.coroutinesdemo.singlerequest.viewmodel.SingleRequestViewModel
+import dev.arildo.coroutinesdemo.databinding.ActivityMultipleRequestsBinding
+import dev.arildo.coroutinesdemo.multiplerequests.viewmodel.MultipleRequestsViewModel
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class SingleRequestActivity :
-    BaseActivity<ActivitySingleRequestBinding>(R.layout.activity_single_request) {
+class MultipleRequestsActivity :
+    BaseActivity<ActivityMultipleRequestsBinding>(R.layout.activity_multiple_requests) {
 
-    private val viewModel: SingleRequestViewModel by viewModel()
+    private val viewModel: MultipleRequestsViewModel by viewModel()
     private val songsAdapter by lazy { SongAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {

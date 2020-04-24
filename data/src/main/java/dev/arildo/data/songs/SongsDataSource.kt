@@ -13,6 +13,6 @@ interface SongsDataSource {
     }
 
     interface Remote {
-        suspend fun getSongs(artistId: String, limit: Int): Response<ResponseWrapper<Song>>
+        suspend fun getSongs(artistId: String): Response<ResponseWrapper<Song>>
     }
 }

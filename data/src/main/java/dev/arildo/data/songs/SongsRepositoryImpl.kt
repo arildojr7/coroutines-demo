@@ -21,8 +21,8 @@ class SongsRepositoryImpl(
         songsLocalDataSource.saveSongs(songs)
     }
 
-    override suspend fun getSongs(artistId: String, limit: Int): Response<ResponseWrapper<Song>> {
-        return songsRemoteDataSource.getSongs(artistId, limit)
+    override suspend fun getSongs(artistId: String): Response<ResponseWrapper<Song>> {
+        return songsRemoteDataSource.getSongs(artistId)
     }
 
     override suspend fun getSongsFlow(artistId: String, limit: Int): Flow<Response<ResponseWrapper<Song>>> {
@@ -32,7 +32,7 @@ class SongsRepositoryImpl(
                     emit(Response.success(ResponseWrapper(results = local)))
                 }
                 try {
-                    songsRemoteDataSource.getSongs(artistId, limit).body()?.results?.let { remote ->
+                    songsRemoteDataSource.getSongs(artistId).body()?.results?.let { remote ->
                         if (!local.containsAll(remote)) {
                             saveSongs(remote)
                             emit(Response.success(ResponseWrapper(results = remote)))
