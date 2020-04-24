@@ -6,6 +6,7 @@ import dev.arildo.coroutinesdemo.R
 import dev.arildo.coroutinesdemo.animations.activity.AnimationsActivity
 import dev.arildo.coroutinesdemo.core.base.BaseActivity
 import dev.arildo.coroutinesdemo.databinding.ActivityMenuBinding
+import dev.arildo.coroutinesdemo.singlerequest.activity.SingleRequestActivity
 
 class MenuActivity : BaseActivity<ActivityMenuBinding>(R.layout.activity_menu) {
 
@@ -23,7 +24,7 @@ class MenuActivity : BaseActivity<ActivityMenuBinding>(R.layout.activity_menu) {
 
         }
         binding.btnSingleRequest.setOnClickListener {
-            startActivity(Intent(this, AnimationsActivity::class.java))
+            startActivity(Intent(this, SingleRequestActivity::class.java))
         }
         binding.btnMultipleRequests.setOnClickListener {
             startActivity(Intent(this, AnimationsActivity::class.java))

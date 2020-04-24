@@ -21,10 +21,14 @@ class SongsRepositoryImpl(
         songsLocalDataSource.saveSongs(songs)
     }
 
-    override suspend fun getSongs(artistId: String, limit: Int): Flow<Response<ResponseWrapper<Song>>> {
+    override suspend fun getSongs(artistId: String, limit: Int): Response<ResponseWrapper<Song>> {
+        return songsRemoteDataSource.getSongs(artistId, limit)
+    }
+
+    override suspend fun getSongsFlow(artistId: String, limit: Int): Flow<Response<ResponseWrapper<Song>>> {
         return flow {
-            songsLocalDataSource.getSongs().collect { local ->
-                if (local.isNotEmpty()){
+            songsLocalDataSource.getSongsFlow().collect { local ->
+                if (local.isNotEmpty()) {
                     emit(Response.success(ResponseWrapper(results = local)))
                 }
                 try {
@@ -34,8 +38,8 @@ class SongsRepositoryImpl(
                             emit(Response.success(ResponseWrapper(results = remote)))
                         }
                     }
-                } catch (e: Exception){
-                    if (local.isNotEmpty()){
+                } catch (e: Exception) {
+                    if (local.isNotEmpty()) {
                         throw FailureRequestWithLocalDataException()
                     } else {
                         throw FailureRequestException()

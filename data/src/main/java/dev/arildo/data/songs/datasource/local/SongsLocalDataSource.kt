@@ -6,7 +6,8 @@ import dev.arildo.data.songs.model.Song
 import kotlinx.coroutines.flow.Flow
 
 class SongsLocalDataSource(private val appDatabase: SongsDatabase) : SongsDataSource.Local {
-    override suspend fun getSongs(): Flow<List<Song>> {
+
+    override suspend fun getSongsFlow(): Flow<List<Song>> {
         return appDatabase.songDao().getAll()
     }
 

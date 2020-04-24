@@ -1,6 +1,7 @@
 package dev.arildo.coroutinesdemo
 
 import android.app.Application
+import dev.arildo.coroutinesdemo.core.di.getSingleRequestModules
 import dev.arildo.data.di.getDataModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -18,7 +19,7 @@ class App : Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(getDataModules() ) //+ getSongsModules()
+            modules(getDataModules() + getSingleRequestModules() )
         }
     }
 }

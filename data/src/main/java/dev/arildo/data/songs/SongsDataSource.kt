@@ -8,7 +8,7 @@ import retrofit2.Response
 interface SongsDataSource {
 
     interface Local {
-        suspend fun getSongs() : Flow<List<Song>>
+        suspend fun getSongsFlow() : Flow<List<Song>>
         suspend fun saveSongs(songs: List<Song>)
     }
 
